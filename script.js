@@ -1,41 +1,29 @@
-body{
-font-family: Arial;
-background:#f4f4f4;
-text-align:center;
+function addTask(){
+
+let input = document.getElementById("taskInput");
+let task = input.value;
+
+if(task === ""){
+alert("Enter a task");
+return;
 }
 
-.container{
-width:400px;
-margin:auto;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px gray;
+let li = document.createElement("li");
+
+li.innerHTML = `
+<span onclick="completeTask(this)">${task}</span>
+<button onclick="deleteTask(this)">Delete</button>
+`;
+
+document.getElementById("taskList").appendChild(li);
+
+input.value="";
 }
 
-input{
-padding:10px;
-width:60%;
+function deleteTask(btn){
+btn.parentElement.remove();
 }
 
-button{
-padding:10px;
-background:blue;
-color:white;
-border:none;
-cursor:pointer;
-}
-
-li{
-list-style:none;
-padding:10px;
-margin:5px;
-background:#eee;
-display:flex;
-justify-content:space-between;
-}
-
-.completed{
-text-decoration:line-through;
-color:gray;
+function completeTask(task){
+task.classList.toggle("completed");
 }
